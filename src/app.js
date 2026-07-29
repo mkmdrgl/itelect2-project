@@ -1,23 +1,16 @@
 import { fetchSampleUsers } from "./api.js";
-import { createTask, TaskValidationError } from "./utils.js";
+import { createTask } from "./utils.js";
 
 async function main() {
   try {
-    const newTask = createTask({ title: "Complete GT4 assignment" });
-    console.log("Task Created Successfully:", newTask);
-  } catch (err) {
-    if (err instanceof TaskValidationError) {
-      console.error("Task Validation Failed:", err.message);
-    } else {
-      console.error("Unexpected Error:", err.message);
-    }
-  }
-
-  try {
-    const users = await fetchSampleUsers(); //
+    const users = await fetchSampleUsers();
     console.log("Fetched Users:", users);
+
+    const sampleTask = { title: "Complete GT4 assignment" };
+    const newTask = createTask(sampleTask);
+    console.log("Created Task:", newTask);
   } catch (err) {
-    console.error("Error fetching users:", err.message); //
+    console.error("Error occurred:", err.message);
   }
 }
 

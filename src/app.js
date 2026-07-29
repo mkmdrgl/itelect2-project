@@ -1,16 +1,24 @@
-// Itelect2: Graded Task 3 - Advanced JavaScript (ES6+)
+import { fetchSampleUsers } from "./api.js";
+import { createTask, TaskValidationError } from "./utils.js";
 
-import { formatDate } from "./utils.js";
-import { validateTask } from "./utils.js";
-import { mergeTaskUpdate } from "./utils.js";
+async function main() {
+  try {
+    const newTask = createTask({ title: "Complete GT4 assignment" });
+    console.log("Task Created Successfully:", newTask);
+  } catch (err) {
+    if (err instanceof TaskValidationError) {
+      console.error("Task Validation Failed:", err.message);
+    } else {
+      console.error("Unexpected Error:", err.message);
+    }
+  }
 
-console.log(formatDate(new Date("2026-07-22")));
+  try {
+    const users = await fetchSampleUsers(); //
+    console.log("Fetched Users:", users);
+  } catch (err) {
+    console.error("Error fetching users:", err.message); //
+  }
+}
 
-console.log(validateTask({ title: "Itelect2 Graded Task 3", dueDate: "2026=07-22"}));
-
-console.log(validateTask());
-
-const originalTask = { title: "Itelect2 GT 3", description: "Session 3: Advanced JavaScript (ES6+)"};
-const updatedTask = mergeTaskUpdate(originalTask, { title: "Itelect2: Graded Task 3"});
-
-console.log(updatedTask);
+main();

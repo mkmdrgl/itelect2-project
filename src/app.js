@@ -6,7 +6,7 @@ async function main() {
     const users = await fetchSampleUsers();
     console.log("Fetched Users:", users);
 
-    const sampleTask = { title: "Complete GT4 assignment" };
+    const sampleTask = { title: "Finish task in ITMetre" };
     const newTask = createTask(sampleTask);
     console.log("Created Task:", newTask);
   } catch (err) {

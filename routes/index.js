@@ -1,6 +1,6 @@
 import express from "express";
 
-import { tasks, fetchSampleUsers } from "../utils.js";
+import { tasks, fetchSampleUsers } from "../src/utils.js";
 
 const router = express.Router();
 

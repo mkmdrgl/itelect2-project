@@ -22,3 +22,18 @@ export function createTask(taskData) {
     ...taskData, //
   };
 }
+
+export const tasks = [
+  { id: 1, title: "Sample Task 1", completed: false },
+  { id: 2, title: "Sample Task 2", completed: true }
+];
+
+export async function fetchSampleUsers() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await response.json();
+  return data.map(user => ({
+    id: user.id,
+    name: user.name,
+    email: user.email
+  }));
+}

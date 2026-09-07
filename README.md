@@ -1,6 +1,6 @@
 # itelect2-project
 
-## API TESTING
+## API TESTING (GT 6)
 ### GET
 ![alt text](image.png)
 
@@ -15,3 +15,16 @@
 
 ### FINAL OUTPUT
 ![alt text](image-4.png)
+
+---
+
+## API TESTING (GT 8)
+## GET
+### GET /api/tasks
+![alt text](image-5.png)
+
+### GET /api/tasks/999
+![alt text](image-6.png)
+
+## POST
+![alt text](image-7.png)

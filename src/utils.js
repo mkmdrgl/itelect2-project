@@ -24,8 +24,8 @@ export function createTask(taskData) {
 }
 
 export const tasks = [
-  { id: 1, title: "Sample Task 1", completed: false },
-  { id: 2, title: "Sample Task 2", completed: true }
+  { id: 1, title: "Wash the dishes", completed: false },
+  { id: 2, title: "Clean the living room", completed: true }
 ];
 
 export async function fetchSampleUsers() {

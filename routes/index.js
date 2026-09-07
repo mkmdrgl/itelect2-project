@@ -1,6 +1,5 @@
 import express from "express";
-
-import { tasks, fetchSampleUsers } from "../src/utils.js";
+import { validateTask, createTask, tasks, fetchSampleUsers } from "../src/utils.js";
 
 const router = express.Router();
 
@@ -23,6 +22,17 @@ router.get("/tasks/:id", (req, res) => {
   } else {
     res.status(404).json({ error: "Task not found" });
   }
+});
+
+router.post("/tasks", (req, res, next) => {
+  if (!validateTask(req.body)) {
+    const err = new Error("title required");
+    err.status = 400;
+    return next(err);
+  }
+  const task = createTask(req.body);
+  tasks.push(task);
+  res.status(201).json(task);
 });
 
 router.get("/users", (req, res) => {

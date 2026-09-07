@@ -1,6 +1,7 @@
 import express from "express";
-import { validateTask, createTask, tasks, fetchSampleUsers } from "../src/utils.js";
+import db from "../models/index.cjs";
 
+const { Task, User } = db;
 const router = express.Router();
 
 let cachedUsers = [];

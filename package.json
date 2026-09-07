@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/mkmdrgl/itelect2-project/issues"
   },
-  "homepage": "https://github.com/mkmdrgl/itelect2-project#readme"
+  "homepage": "https://github.com/mkmdrgl/itelect2-project#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "morgan": "^1.12.0"
+  }
 }

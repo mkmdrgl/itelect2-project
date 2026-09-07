@@ -35,6 +35,30 @@ router.post("/tasks", (req, res, next) => {
   res.status(201).json(task);
 });
 
+router.put("/tasks/:id", (req, res, next) => {
+  const id = Number(req.params.id);
+  const index = tasks.findIndex((t) => t.id === id);
+  if (index === -1) {
+    const err = new Error("Task not found");
+    err.status = 404;
+    return next(err);
+  }
+  tasks[index] = { ...tasks[index], ...req.body };
+  res.status(200).json(tasks[index]);
+});
+
+router.delete("/tasks/:id", (req, res, next) => {
+  const id = Number(req.params.id);
+  const index = tasks.findIndex((t) => t.id === id);
+  if (index === -1) {
+    const err = new Error("Task not found");
+    err.status = 404;
+    return next(err);
+  }
+  const [removed] = tasks.splice(index, 1);
+  res.status(200).json({ message: "Deleted", task: removed });
+});
+
 router.get("/users", (req, res) => {
   res.json(cachedUsers);
 });

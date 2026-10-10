@@ -35,7 +35,7 @@ module.exports = {
         userId: idOf('courtgentry@gmail.com'), createdAt: now, updatedAt: now },
     ]);
   },
-
+  
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Tasks', null, {});
     await queryInterface.bulkDelete('Users', null, {});

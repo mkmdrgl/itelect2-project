@@ -1,5 +1,8 @@
 # itelect2-project
 
+## RENDER LIVE URL
+https://itelect2-project.onrender.com/api/tasks
+
 ## API TESTING (GT 6)
 ### GET
 ![alt text](image.png)

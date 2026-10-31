@@ -19,12 +19,12 @@ router.get("/tasks/:id", async (req, res) => {
   res.json(task);
 });
 
-router.post("/tasks", async (req, res) => {
+router.post("/tasks", verifyToken, async (req, res) => {
   const task = await Task.create(req.body);
   res.status(201).json(task);
 });
 
-router.put("/tasks/:id", async (req, res) => {
+router.put("/tasks/:id", verifyToken, async (req, res) => {
   const task = await Task.findByPk(req.params.id);
   if (!task) {
     return res.status(404).json({ error: "Task not found" });
@@ -33,14 +33,19 @@ router.put("/tasks/:id", async (req, res) => {
   res.json(task);
 });
 
-router.delete("/tasks/:id", async (req, res) => {
-  const task = await Task.findByPk(req.params.id);
-  if (!task) {
-    return res.status(404).json({ error: "Task not found" });
+router.delete(
+  "/tasks/:id",
+  verifyToken,
+  requireRole("admin"),
+  async (req, res) => {
+    const task = await Task.findByPk(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+    await task.destroy();
+    res.json({ message: "Deleted", task, deletedBy: req.user.email });
   }
-  await task.destroy();
-  res.json({ message: "Deleted", task });
-});
+);
 
 router.get("/users", async (req, res) => {
   const users = await User.findAll({ include: Task, order: [["id", "ASC"]] });
@@ -48,5 +53,3 @@ router.get("/users", async (req, res) => {
 });
 
 export default router;
-
-// 

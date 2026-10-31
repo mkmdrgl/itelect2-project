@@ -13,6 +13,7 @@ if (!process.env.JWT_SECRET) {
   console.error("JWT_SECRET is missing from .env -- the API cannot sign tokens.");
   process.exit(1);
 }
+
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
